@@ -1,3 +1,4 @@
+import logoDna from '../assets/logo_dna.png'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { Hero } from './Hero'
 import { Problem } from './Problem'
@@ -13,7 +14,7 @@ export function MobileVs4() {
   return (
     <main className="mobile-vs4">
       <header className="header js-reveal">
-        <img className='logo_img' src="/src/assets/logo_dna.png" />
+        <img className='logo_img' src={logoDna} />
         <button className="header-button">Garantir acompanhamento</button>
         {/* <span className="mobile-vs4__menu">☰</span> */}
       </header>

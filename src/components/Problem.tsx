@@ -1,10 +1,17 @@
-﻿const problemItems = [
-  { title: 'Dados divergentes entre documentos', icon: 'DocIcon.svg' },
-  { title: 'Certidões vencidas ou incorretas', icon: 'ClockIcon.svg' },
-  { title: 'Solicitação de novos documentos no processo', icon: 'MultiDocsIcon.svg' },
-  { title: 'Custos extras com documentação', icon: 'DollarIcon.svg' },
-  { title: 'Exigências do cartório que impedem a escritura', icon: 'AlertIcon.svg' },
-  { title: 'Falta de informações sobre o imóvel', icon: 'AlertDocIcon.svg' },
+import alertDocIcon from '../assets/icons/AlertDocIcon.svg'
+import alertIcon from '../assets/icons/AlertIcon.svg'
+import clockIcon from '../assets/icons/ClockIcon.svg'
+import docIcon from '../assets/icons/DocIcon.svg'
+import dollarIcon from '../assets/icons/DollarIcon.svg'
+import multiDocsIcon from '../assets/icons/MultiDocsIcon.svg'
+
+const problemItems = [
+  { title: 'Dados divergentes entre documentos', icon: docIcon },
+  { title: 'Certidões vencidas ou incorretas', icon: clockIcon },
+  { title: 'Solicitação de novos documentos no processo', icon: multiDocsIcon },
+  { title: 'Custos extras com documentação', icon: dollarIcon },
+  { title: 'Exigências do cartório que impedem a escritura', icon: alertIcon },
+  { title: 'Falta de informações sobre o imóvel', icon: alertDocIcon },
 ]
 
 export function Problem() {
@@ -61,7 +68,7 @@ export function Problem() {
             {problemItems.map((item) => (
               <article className="problem__card" key={item.title}>
                 <div className="problem__icon">
-                  <img src={"src/assets/icons/" + item.icon} />
+                  <img src={item.icon} />
                 </div>
 
                 <p className="problem__card-text">{item.title}</p>

@@ -1,3 +1,4 @@
+import checkIcon from '../assets/CheckIcon.svg'
 import { figmaImages } from '../constants/figmaAssets'
 
 const issueSteps = [
@@ -38,7 +39,7 @@ export function CommonIssues() {
           {issueSteps.map((item) => (
             <div className="common-issues__benefit" key={item}>
               <span>
-              <img className="checkicon" src="/src/assets/CheckIcon.svg" />
+              <img className="checkicon" src={checkIcon} />
               {item}</span>
             </div>
           ))}
@@ -79,7 +80,7 @@ export function CommonIssues() {
                 <span className="common-issues__certificate-label">{item.label}</span>
 
                 {item.status === 'done' ? (
-                  <img className="checkicon" src="/src/assets/CheckIcon.svg" />
+                  <img className="checkicon" src={checkIcon} />
                 ) : (
                   <span className="common-issues__status-badge">Em andamento</span>
                 )}

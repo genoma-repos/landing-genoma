@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import quotesIcon from '../assets/icons/QuotesIcon.svg'
 import { figmaImages } from '../constants/figmaAssets'
 
 const testimonials = [
@@ -60,8 +61,8 @@ export function Testimonials() {
             >
               {testimonials.map((item) => (
                 <article className="testimonials__card" key={item.name}>
-                  <div className="testimonials__quote-icon" aria-hidden="true">                    
-                    <img src='src/assets/icons/QuotesIcon.svg' />
+                  <div className="testimonials__quote-icon" aria-hidden="true">
+                    <img src={quotesIcon} />
                   </div>
 
                   <div className="testimonials__stars" aria-hidden="true">

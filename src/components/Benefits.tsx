@@ -1,15 +1,19 @@
+import fileIcon from '../assets/icons/FileIcon.svg'
+import usersGroupIcon from '../assets/icons/UsersGroupIcon.svg'
+import seloDna from '../assets/selo_dna.png'
+
 const costItems = [
   {
     title: 'Emissão das certidões',
     value: 'R$ 700,00',
     description: 'Pagamentos destinados aos órgãos emissores (cartórios e serviços oficiais)',
-    icon: 'FileIcon.svg',
+    icon: fileIcon,
   },
   {
     title: 'Acompanhamento especializado',
     value: 'R$ 300,00',
     description: 'Gestão completa da etapa, validação de documentos e tratativa de exigências',
-    icon: 'UsersGroupIcon.svg',
+    icon: usersGroupIcon,
   },
 ]
 
@@ -55,7 +59,7 @@ export function Benefits() {
 
             <span className="benefits__price-note">*Valor estimado</span>
 
-            <img className="benefits__seal" src="src/assets/selo_dna.png" />
+            <img className="benefits__seal" src={seloDna} />
           </div>
 
           <div className="benefits__details">
@@ -65,7 +69,7 @@ export function Benefits() {
               {costItems.map((item) => (
                 <article className="benefits__cost-item" key={item.title}>
                   <div className={`benefits__cost-icon`}>
-                    <img src={"src/assets/icons/" + item.icon} />
+                    <img src={item.icon} />
                   </div>
 
                   <div className="benefits__cost-copy">

@@ -1,9 +1,12 @@
 
+import checkIcon from '../assets/CheckIcon.svg'
+import heroImage from '../assets/hero_image.png'
+
 export function Hero() {
   return (
     <section className="section hero js-reveal" id="hero" aria-label="Hero">
       <div className="content">
-        <img className="img_hero" src='src/assets/hero_image.png' />
+        <img className="img_hero" src={heroImage} />
         <h2 className="regular">
           Não deixe sua venda <br />
           <span style={{ color: '#ff9b4c' }}>travar</span> nas <span style={{ color: '#ff9b4c' }}>certidões</span>
@@ -24,7 +27,7 @@ export function Hero() {
           <h3>Acompanhamento completo</h3>
 
           <div className="item">
-            <img className="checkicon" src="/src/assets/CheckIcon.svg" />
+            <img className="checkicon" src={checkIcon} />
             <div className="label">
               <p className="regular p2">Sem burocracia</p>
               <span className="regular s1">Certidões corretas desde o início</span>
@@ -32,7 +35,7 @@ export function Hero() {
           </div>
 
           <div className="item">
-            <img className="checkicon" src="/src/assets/CheckIcon.svg" />
+            <img className="checkicon" src={checkIcon} />
             <div className="label">
               <p className="regular p2">Tudo sob controle</p>
               <span className="regular s1">Prazos e documentos organizados</span>
@@ -40,7 +43,7 @@ export function Hero() {
           </div>
 
           <div className="item">
-            <img className="checkicon" src="/src/assets/CheckIcon.svg" />
+            <img className="checkicon" src={checkIcon} />
             <div className="label">
               <p className="regular p2">Suporte humano</p>
               <span className="regular s1">Exigências resolvidas por especialista</span>
@@ -48,7 +51,7 @@ export function Hero() {
           </div>
 
           <div className="item">
-            <img className="checkicon" src="/src/assets/CheckIcon.svg" />
+            <img className="checkicon" src={checkIcon} />
             <div className="label">
               <p className="regular p2">Até a escritura</p>
               <span className="regular s1">Orientação clara em cada etapa</span>
