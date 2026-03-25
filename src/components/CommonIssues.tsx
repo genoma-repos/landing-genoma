@@ -1,5 +1,5 @@
 import checkIcon from '../assets/CheckIcon.svg'
-import { figmaImages } from '../constants/figmaAssets'
+import Analista from '../assets/analista_image.png'
 
 const issueSteps = [
   'Solicita e valida as certidões necessárias',
@@ -35,64 +35,68 @@ export function CommonIssues() {
           ao longo do processo.
         </p>
 
-        <div className="common-issues__benefits">
-          {issueSteps.map((item) => (
-            <div className="common-issues__benefit" key={item}>
-              <span>
-              <img className="checkicon" src={checkIcon} />
-              {item}</span>
-            </div>
-          ))}
-        </div>
+        <div className='image-container'>
 
-        <div className="common-issues__image-card">
-          <img
-            className="common-issues__image"
-            src={figmaImages.analista}
-            alt="Analista especializada acompanhando a venda"
-          />
-
-          <div className="common-issues__analyst">
-            <div className="common-issues__avatar">A</div>
-
-            <div className="common-issues__analyst-copy">
-              <strong>Sua analista especializada</strong>
-              <div className="common-issues__rating" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="common-issues__panel">
-          <p className="common-issues__panel-title">
-            <span>Mais de 20 certidões.</span> <br />
-            Vários órgãos. Regras diferentes.
-          </p>
-
-          <div className="common-issues__certificate-list">
-            {certificates.map((item) => (
-              <div className="common-issues__certificate" key={item.label}>
-                <span className="common-issues__certificate-label">{item.label}</span>
-
-                {item.status === 'done' ? (
+          <div className="common-issues__benefits">
+            {issueSteps.map((item) => (
+              <div className="common-issues__benefit" key={item}>
+                <span>
                   <img className="checkicon" src={checkIcon} />
-                ) : (
-                  <span className="common-issues__status-badge">Em andamento</span>
-                )}
+                  {item}
+                </span>
               </div>
             ))}
           </div>
+
+          <div className="common-issues__image-card">
+            <img
+              className="common-issues__image"
+              src={Analista}
+              alt="Analista especializada acompanhando a venda"
+            />
+
+            <div className="common-issues__analyst">
+              <div className="common-issues__avatar">A</div>
+
+              <div className="common-issues__analyst-copy">
+                <strong>Sua analista especializada</strong>
+                <div className="common-issues__rating" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="common-issues__panel">
+            <p className="common-issues__panel-title">
+              <span>Mais de 20 certidões.</span> <br />
+              Vários órgãos. Regras diferentes.
+            </p>
+
+            <div className="common-issues__certificate-list">
+              {certificates.map((item) => (
+                <div className="common-issues__certificate" key={item.label}>
+                  <span className="common-issues__certificate-label">{item.label}</span>
+
+                  {item.status === 'done' ? (
+                    <img className="checkicon" src={checkIcon} />
+                  ) : (
+                    <span className="common-issues__status-badge">Em andamento</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
         <div className="common-issues__cta-group">
           <p className="common-issues__cta-copy regular p2 bold">
             Você não precisa lidar
-            <br />
             com tudo isso sozinho.
           </p>
 

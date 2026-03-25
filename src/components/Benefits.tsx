@@ -33,11 +33,8 @@ export function Benefits() {
           </h2>
 
           <p className="benefits__description regular p2">
-            Alguns ajustes podem
-            <br />
-            <strong>custar milhares de reais. </strong>
-            <br />
-            <strong>Começar certo aqui evita atraso depois.</strong>
+            Alguns ajustes podem            
+            <strong> custar milhares de reais. Começar certo aqui evita atraso depois.</strong>
           </p>
         </div>
 

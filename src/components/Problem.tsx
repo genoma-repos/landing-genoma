@@ -28,14 +28,14 @@ export function Problem() {
             dos <span>atrasos</span> <br />
             na venda
             <br />
-            acontecem aqui
+            acontece aqui
           </p>
         </div>
 
         <div className="problem__intro">
           <p className="regular p1">
-            A maioria desses atrasos vem de pendências em certidões, muitas vezes
-            desconhecidas pelos proprietários.
+            A maioria desses atrasos vem de <span>pendências em certidões</span>, muitas vezes
+            <span> desconhecidas</span> pelos proprietários.
           </p>
 
           <p className="p1 problem__highlight">
@@ -51,7 +51,7 @@ export function Problem() {
             <span className="problem__legend-dot problem__legend-dot--primary" />
             <span>Certidões</span>
           </div>
-          <div className="problem__legend-item">
+          <div className="problem__legend-item others">
             <span className="problem__legend-dot problem__legend-dot--secondary" />
             <span>Outras etapas</span>
           </div>

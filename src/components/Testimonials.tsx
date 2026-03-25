@@ -28,15 +28,16 @@ const testimonials = [
 ] as const
 
 export function Testimonials() {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const width = window.visualViewport?.width || 0;
 
   const goToPrevious = () => {
-    setActiveIndex((current) => (current === 0 ? testimonials.length - 1 : current - 1))
-  }
+    setActiveIndex((current) => (current === 0 ? testimonials.length - 1 : current - 1));
+  };
 
   const goToNext = () => {
-    setActiveIndex((current) => (current === testimonials.length - 1 ? 0 : current + 1))
-  }
+    setActiveIndex((current) => (current === testimonials.length - 1 ? 0 : current + 1));
+  };
 
   return (
     <section className="section testimonials js-reveal" id="testimonials" aria-label="Depoimentos">
@@ -87,39 +88,40 @@ export function Testimonials() {
               ))}
             </div>
           </div>
+          {width < 1024 &&
+            <div className="testimonials__controls">
+              <button
+                className="testimonials__arrow"
+                type="button"
+                onClick={goToPrevious}
+                aria-label="Ver depoimento anterior"
+              >
+                ‹
+              </button>
 
-          <div className="testimonials__controls">
-            <button
-              className="testimonials__arrow"
-              type="button"
-              onClick={goToPrevious}
-              aria-label="Ver depoimento anterior"
-            >
-              ‹
-            </button>
+              <div className="testimonials__dots">
+                {testimonials.map((item, index) => (
+                  <button
+                    key={item.name}
+                    className={`testimonials__dot ${index === activeIndex ? 'is-active' : ''}`}
+                    type="button"
+                    onClick={() => setActiveIndex(index)}
+                    aria-label={`Ver depoimento de ${item.name}`}
+                    aria-pressed={index === activeIndex}
+                  />
+                ))}
+              </div>
 
-            <div className="testimonials__dots">
-              {testimonials.map((item, index) => (
-                <button
-                  key={item.name}
-                  className={`testimonials__dot ${index === activeIndex ? 'is-active' : ''}`}
-                  type="button"
-                  onClick={() => setActiveIndex(index)}
-                  aria-label={`Ver depoimento de ${item.name}`}
-                  aria-pressed={index === activeIndex}
-                />
-              ))}
+              <button
+                className="testimonials__arrow"
+                type="button"
+                onClick={goToNext}
+                aria-label="Ver próximo depoimento"
+              >
+                ›
+              </button>
             </div>
-
-            <button
-              className="testimonials__arrow"
-              type="button"
-              onClick={goToNext}
-              aria-label="Ver próximo depoimento"
-            >
-              ›
-            </button>
-          </div>
+          }
         </div>
 
         <div className="testimonials__cta-group">

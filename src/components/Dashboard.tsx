@@ -17,19 +17,21 @@ export function Dashboard() {
   return (
     <section className="section dashboard js-reveal" id="dashboard" aria-label="Painel Genoma">
       <div className="dashboard__content">
-        <h2 className="dashboard__title">
-          DNA <span>resolve</span>
-          <br />
-          Genoma <span>mostra</span>
-        </h2>
+        <div className="title-container">
+          <h2 className="dashboard__title">
+            DNA <span>resolve</span>
+            <br />
+            Genoma <span>mostra</span>
+          </h2>
 
-        <p className="dashboard__description regular p2">
-          A DNA Imóveis cuida das certidões. Você acompanha cada etapa
-          <br />
-          em tempo real pelo Genoma.
-          <br />
-          Tudo no seu painel, com total visibilidade.
-        </p>
+          <p className="dashboard__description regular p2">
+            A DNA Imóveis cuida das certidões. Você acompanha cada etapa
+            <br />
+            em tempo real pelo Genoma.
+            <br />
+            Tudo no seu painel, com total visibilidade.
+          </p>
+        </div>
 
         <div className="dashboard__panel">
           <div className="dashboard__panel-header">
@@ -88,7 +90,7 @@ export function Dashboard() {
         <button className="btn dashboard__cta" type="button">
           Deixar a DNA resolver isso
         </button>
-        
+
       </div>
     </section>
   )
