@@ -1,6 +1,7 @@
 import fileIcon from '../assets/icons/FileIcon.svg'
 import usersGroupIcon from '../assets/icons/UsersGroupIcon.svg'
 import seloDna from '../assets/selo_dna.png'
+import type { PropsComponentsType } from './MobileVs4'
 
 const costItems = [
   {
@@ -22,7 +23,26 @@ const highlights = [
   'Sem surpresas no processo.',
 ]
 
-export function Benefits() {
+export function Benefits({ landingData }: PropsComponentsType) {
+
+  const returnValor = () => {
+    if (landingData?.valor_total) {
+      const valor = landingData?.valor_total.replace('R$', '').replace(' ', '');
+      const cents = valor.split(',')?.[1];
+      const real = valor.split(',')?.[0];
+      return <>
+        <span className="benefits__currency">R$</span>
+        <strong>{real}</strong>
+        <span className="benefits__asterisk">*</span>
+        <span className="benefits__cents">,{cents ? cents : '00'}</span></>
+    } else return <>
+      <span className="benefits__currency">R$</span>
+      <strong>1.000</strong>
+      <span className="benefits__asterisk">*</span>
+      <span className="benefits__cents">,00</span>
+    </>
+  };
+
   return (
     <section className="section benefits js-reveal" id="benefits" aria-label="Benefícios">
       <div className="benefits__content">
@@ -33,7 +53,7 @@ export function Benefits() {
           </h2>
 
           <p className="benefits__description regular p2">
-            Alguns ajustes podem            
+            Alguns ajustes podem
             <strong> custar milhares de reais. Começar certo aqui evita atraso depois.</strong>
           </p>
         </div>
@@ -48,10 +68,7 @@ export function Benefits() {
             </h3>
 
             <div className="benefits__price">
-              <span className="benefits__currency">R$</span>
-              <strong>1.000</strong>
-              <span className="benefits__asterisk">*</span>
-              <span className="benefits__cents">,00</span>
+              {returnValor()}
             </div>
 
             <span className="benefits__price-note">*Valor estimado</span>

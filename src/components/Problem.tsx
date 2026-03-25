@@ -28,7 +28,7 @@ export function Problem() {
             dos <span>atrasos</span> <br />
             na venda
             <br />
-            acontece aqui
+            acontecem aqui
           </p>
         </div>
 

@@ -7,9 +7,28 @@ import { Benefits } from './Benefits'
 import { Dashboard } from './Dashboard'
 import { Testimonials } from './Testimonials'
 import { Footer } from './Footer'
+import { getUserData, type LandingPageCustomDataType } from '../api'
+import { useEffect, useState } from 'react'
+
+export type PropsComponentsType = {
+  landingData: LandingPageCustomDataType | null
+}
 
 export function MobileVs4() {
   useScrollReveal()
+  const [landingData, setLandingData] = useState<LandingPageCustomDataType | null>(null);
+
+  console.log("Dados API: ", landingData);
+
+  const getData = async () => {
+   const res = await getUserData();
+    setLandingData(res);
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    getData()
+  },[])
 
   return (
     <main className="mobile-vs4">
@@ -19,11 +38,11 @@ export function MobileVs4() {
         {/* <span className="mobile-vs4__menu">☰</span> */}
       </header>
 
-      <Hero />
+      <Hero landingData={landingData} />
       <Problem />
       <CommonIssues />
       <Dashboard />
-      <Benefits />
+      <Benefits landingData={landingData} />
       <Testimonials />
       <Footer />
     </main>

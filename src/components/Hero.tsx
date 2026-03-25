@@ -2,9 +2,19 @@
 import checkIcon from '../assets/CheckIcon.svg'
 import heroImage from '../assets/hero_image.png'
 import heroImageDesktop from '../assets/hero_image_desktop.png'
+import type { PropsComponentsType } from './MobileVs4';
 
-export function Hero() {
+export function Hero({ landingData }: PropsComponentsType) {
   const width = window.visualViewport?.width || 0;
+
+  const returnValor = () => {
+    if(landingData?.valor_total) {
+      const valor = landingData?.valor_total.replace('R$', '').replace(' ', '');
+      const cents = valor.split(',')?.[1];
+      const real = valor.split(',')?.[0];
+      return <span>R$ <strong>{real}</strong>,{cents ? cents : '00'}</span>
+    } else  return <span>R$ <strong>500</strong>,00</span>
+  };
 
   return (
     <section className="section hero js-reveal" id="hero" aria-label="Hero">
@@ -18,7 +28,7 @@ export function Hero() {
           </h2>
 
           <p className="regular p2">
-            <strong>Leandro, </strong>
+            <strong>{landingData ? landingData.user_name : 'Leandro'}, </strong>
             essa é a etapa em que mais surgem
             problemas na venda,
             <strong> mesmo quando tudo parece certo.</strong>
@@ -72,7 +82,7 @@ export function Hero() {
             </div>
 
             <div className="valor-container">
-              <span>R$ <strong>500</strong>,00</span>
+              {returnValor()}
               <span className="label">/serviço completo</span>
             </div>
             <span className="regular s1">90% dos proprietários escolhem esse acompanhamento.</span>
