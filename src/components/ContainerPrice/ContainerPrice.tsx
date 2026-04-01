@@ -492,7 +492,7 @@ export default function ContainerPrice({ isOpen, onClose }: ContainerPriceProps)
               <p className="price-header-text">
                 Composição do valor
               </p>
-              <div className={`chevron-wrapper ${isDetailsOpen ? '' : 'rotated'}`}>
+              <div className={`chevron-wrapper ${!isDetailsOpen ? '' : 'rotated'}`}>
                 <div className="chevron-icon" data-name="Icons">
                   <div className="chevron-inner" data-name="heroicons-mini/chevron-down">
                     <div className="chevron-vector" data-name="Vector (Stroke)">
