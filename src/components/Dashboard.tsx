@@ -13,7 +13,11 @@ const timeline = [
   { title: 'Validação final para escritura', date: '—', status: 'pending' },
 ] as const
 
-export function Dashboard() {
+type DashboardProps = {
+  onOpenModal: () => void
+}
+
+export function Dashboard({ onOpenModal }: DashboardProps) {
   return (
     <section className="section dashboard js-reveal" id="dashboard" aria-label="Painel Genoma">
       <div className="dashboard__content">
@@ -87,7 +91,7 @@ export function Dashboard() {
           </div>
         </div>
 
-        <button className="btn dashboard__cta" type="button">
+        <button className="btn dashboard__cta" type="button" onClick={onOpenModal}>
           Deixar a DNA resolver isso
         </button>
 

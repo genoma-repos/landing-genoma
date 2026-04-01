@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState, type TouchEvent } from 'react'
 
 import quotesIcon from '../assets/icons/QuotesIcon.svg'
 import { figmaImages } from '../constants/figmaAssets'
@@ -27,8 +27,14 @@ const testimonials = [
   },
 ] as const
 
-export function Testimonials() {
+type TestimonialsProps = {
+  onOpenModal: () => void
+}
+
+export function Testimonials({ onOpenModal }: TestimonialsProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
   const width = window.visualViewport?.width || 0;
 
   const goToPrevious = () => {
@@ -37,6 +43,34 @@ export function Testimonials() {
 
   const goToNext = () => {
     setActiveIndex((current) => (current === testimonials.length - 1 ? 0 : current + 1));
+  };
+
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+  };
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    if (width >= 1024 || touchStartX.current === null || touchStartY.current === null) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+    const diffX = touch.clientX - touchStartX.current;
+    const diffY = touch.clientY - touchStartY.current;
+    const swipeThreshold = 40;
+
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+      if (diffX > 0) {
+        goToPrevious();
+      } else {
+        goToNext();
+      }
+    }
+
+    touchStartX.current = null;
+    touchStartY.current = null;
   };
 
   return (
@@ -55,7 +89,11 @@ export function Testimonials() {
         </div>
 
         <div className="testimonials__carousel">
-          <div className="testimonials__viewport">
+          <div
+            className="testimonials__viewport"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <div
               className="testimonials__track"
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
@@ -90,14 +128,14 @@ export function Testimonials() {
           </div>
           {width < 1024 &&
             <div className="testimonials__controls">
-              <button
+              {/* <button
                 className="testimonials__arrow"
                 type="button"
                 onClick={goToPrevious}
                 aria-label="Ver depoimento anterior"
               >
                 ‹
-              </button>
+              </button> */}
 
               <div className="testimonials__dots">
                 {testimonials.map((item, index) => (
@@ -112,14 +150,14 @@ export function Testimonials() {
                 ))}
               </div>
 
-              <button
+              {/* <button
                 className="testimonials__arrow"
                 type="button"
                 onClick={goToNext}
                 aria-label="Ver próximo depoimento"
               >
                 ›
-              </button>
+              </button> */}
             </div>
           }
         </div>
@@ -129,7 +167,7 @@ export function Testimonials() {
             Essa etapa pode travar sua venda. <br />Você pode seguir com mais segurança.
           </p>
 
-          <button className="btn testimonials__cta" type="button">
+          <button className="btn testimonials__cta" type="button" onClick={onOpenModal}>
             Garantir acompanhamento e evitar atrasos
           </button>
         </div>

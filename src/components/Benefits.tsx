@@ -23,7 +23,7 @@ const highlights = [
   'Sem surpresas no processo.',
 ]
 
-export function Benefits({ landingData }: PropsComponentsType) {
+export function Benefits({ landingData, onOpenModal }: PropsComponentsType) {
 
   const returnValor = () => {
     if (landingData?.valor_total) {
@@ -106,7 +106,7 @@ export function Benefits({ landingData }: PropsComponentsType) {
             <p className="benefits__highlight">Mais segurança, menos imprevistos.</p>
 
             <div className="benefits__cta-group">
-              <button className="btn benefits__cta" type="button">
+              <button className="btn benefits__cta" type="button" onClick={onOpenModal}>
                 Garantir acompanhamento DNA
               </button>
 

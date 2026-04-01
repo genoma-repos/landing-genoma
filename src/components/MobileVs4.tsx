@@ -12,9 +12,14 @@ import { useEffect, useState } from 'react'
 
 export type PropsComponentsType = {
   landingData: LandingPageCustomDataType | null
+  onOpenModal: () => void
 }
 
-export function MobileVs4() {
+type MobileVs4Props = {
+  onOpenModal: () => void
+}
+
+export function MobileVs4({ onOpenModal }: MobileVs4Props) {
   useScrollReveal()
   const [landingData, setLandingData] = useState<LandingPageCustomDataType | null>(null);
 
@@ -34,16 +39,18 @@ export function MobileVs4() {
     <main className="mobile-vs4">
       <header className="header js-reveal">
         <img className='logo_img' src={logoDna} />
-        <button className="header-button">Garantir acompanhamento</button>
+        <button className="header-button" type="button" onClick={onOpenModal}>
+          Garantir acompanhamento
+        </button>
         {/* <span className="mobile-vs4__menu">☰</span> */}
       </header>
 
-      <Hero landingData={landingData} />
-      <Problem />
-      <CommonIssues />
-      <Dashboard />
-      <Benefits landingData={landingData} />
-      <Testimonials />
+      <Hero landingData={landingData} onOpenModal={onOpenModal} />
+      <Problem onOpenModal={onOpenModal} />
+      <CommonIssues onOpenModal={onOpenModal} />
+      <Dashboard onOpenModal={onOpenModal} />
+      <Benefits landingData={landingData} onOpenModal={onOpenModal} />
+      <Testimonials onOpenModal={onOpenModal} />
       <Footer />
     </main>
   )

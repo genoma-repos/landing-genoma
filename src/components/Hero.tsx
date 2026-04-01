@@ -2,9 +2,10 @@
 import checkIcon from '../assets/CheckIcon.svg'
 import heroImage from '../assets/hero_image.png'
 import heroImageDesktop from '../assets/hero_image_desktop.png'
+import type { MouseEvent } from 'react';
 import type { PropsComponentsType } from './MobileVs4';
 
-export function Hero({ landingData }: PropsComponentsType) {
+export function Hero({ landingData, onOpenModal }: PropsComponentsType) {
   const width = window.visualViewport?.width || 0;
 
   const returnValor = () => {
@@ -14,6 +15,11 @@ export function Hero({ landingData }: PropsComponentsType) {
       const real = valor.split(',')?.[0];
       return <span>R$ <strong>{real}</strong>,{cents ? cents : '00'}</span>
     } else  return <span>R$ <strong>500</strong>,00</span>
+  };
+
+  const handleCtaClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    onOpenModal();
   };
 
   return (
@@ -87,7 +93,7 @@ export function Hero({ landingData }: PropsComponentsType) {
             </div>
             <span className="regular s1">90% dos proprietários escolhem esse acompanhamento.</span>
             <div className="actions">
-              <a className="btn btn-primary" href="#">Acompanhar com a DNA</a>
+              <a className="btn btn-primary" href="#" onClick={handleCtaClick}>Acompanhar com a DNA</a>
               <span className="regular s1">Seguir por conta própria e assumir riscos</span>
             </div>
           </div>

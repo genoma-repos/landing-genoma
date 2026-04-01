@@ -14,7 +14,11 @@ const certificates = [
   { label: 'Certidão de Matrícula', status: 'progress' },
 ] as const
 
-export function CommonIssues() {
+type CommonIssuesProps = {
+  onOpenModal: () => void
+}
+
+export function CommonIssues({ onOpenModal }: CommonIssuesProps) {
   return (
     <section
       className="section common-issues js-reveal"
@@ -100,7 +104,7 @@ export function CommonIssues() {
             com tudo isso sozinho.
           </p>
 
-          <button className="btn common-issues__cta" type="button">
+          <button className="btn common-issues__cta" type="button" onClick={onOpenModal}>
             Deixar a DNA resolver isso
           </button>
         </div>

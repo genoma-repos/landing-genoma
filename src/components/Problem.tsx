@@ -14,7 +14,11 @@ const problemItems = [
   { title: 'Falta de informações sobre o imóvel', icon: alertDocIcon },
 ]
 
-export function Problem() {
+type ProblemProps = {
+  onOpenModal: () => void
+}
+
+export function Problem({ onOpenModal }: ProblemProps) {
   return (
     <section className="section problem js-reveal" id="problem" aria-label="Problema">
       <div className="problem__content">
@@ -76,7 +80,7 @@ export function Problem() {
             ))}
           </div>
 
-          <button className="btn problem__cta" type="button">
+          <button className="btn problem__cta" type="button" onClick={onOpenModal}>
             Quero evitar atrasos na minha venda
           </button>
         </div>
