@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export function useScrollReveal() {
+export function useScrollReveal(restartKey?: unknown) {
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>('.js-reveal')
 
@@ -24,5 +24,5 @@ export function useScrollReveal() {
     elements.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
-  }, [])
+  }, [restartKey])
 }

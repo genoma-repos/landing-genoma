@@ -34,7 +34,7 @@ export function Hero({ landingData, onOpenModal }: PropsComponentsType) {
           </h2>
 
           <p className="regular p2">
-            <strong>{landingData?.user_name ? landingData.user_name + ',' : ''} </strong>
+            <strong>{landingData?.user_name ? landingData.user_name : 'Olá'}</strong>,
             essa é a etapa em que mais surgem
             problemas na venda,
             <strong> mesmo quando tudo parece certo.</strong>

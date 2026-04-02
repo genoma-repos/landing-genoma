@@ -17,9 +17,9 @@ export type PropsComponentsType = {
 }
 
 export function MobileVs4() {
-  useScrollReveal()
   const [landingData, setLandingData] = useState<LandingPageCustomDataType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  useScrollReveal(isLoading ? 'loading' : 'ready')
   const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
 
   function onOpenModal() {
@@ -38,9 +38,57 @@ export function MobileVs4() {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     getData()
-  },[])
+  }, []);
+
+  if (isLoading) {
+    return (
+      <main className="mobile-vs4">
+        <header className="header">
+          <img className='logo_img' src={logoDna} />
+          <button className="header-button" type="button" onClick={onOpenModal}>
+            Garantir acompanhamento
+          </button>
+        </header>
+        <div className="loading-state" aria-live="polite" aria-busy="true">
+          <div className="loading-spinner" />
+          <p className="loading-text">Carregando dados...</p>
+        </div>
+        <style>{`
+          .loading-state {
+            min-height: calc(100vh - 88px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+          }
+
+          .loading-spinner {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 4px solid #d9e8e7;
+            border-top-color: #01ab9d;
+            animation: mobileVs4Spin 0.85s linear infinite;
+          }
+
+          .loading-text {
+            margin: 0;
+            color: #4b5b61;
+            font-size: 14px;
+            font-weight: 500;
+          }
+
+          @keyframes mobileVs4Spin {
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        `}</style>
+      </main>
+    )
+  };
 
   return (
     <main className="mobile-vs4">
@@ -61,60 +109,9 @@ export function MobileVs4() {
       <Problem onOpenModal={onOpenModal} />
       <CommonIssues onOpenModal={onOpenModal} />
       <Dashboard onOpenModal={onOpenModal} />
-      {isLoading ? (
-        <section
-          className="js-reveal"
-          aria-label="Carregando benefícios"
-          aria-busy="true"
-          style={{ padding: '24px 16px' }}
-        >
-          <div style={{ maxWidth: 720, margin: '0 auto' }}>
-            <div
-              style={{
-                width: '60%',
-                height: 24,
-                borderRadius: 8,
-                background: 'linear-gradient(90deg, #eceff1 25%, #f6f8f9 40%, #eceff1 55%)',
-                backgroundSize: '200% 100%',
-                animation: 'mobileVs4SkeletonShimmer 1.2s linear infinite'
-              }}
-            />
-            <div
-              style={{
-                width: '100%',
-                height: 88,
-                marginTop: 16,
-                borderRadius: 12,
-                background: 'linear-gradient(90deg, #eceff1 25%, #f6f8f9 40%, #eceff1 55%)',
-                backgroundSize: '200% 100%',
-                animation: 'mobileVs4SkeletonShimmer 1.2s linear infinite'
-              }}
-            />
-            <div
-              style={{
-                width: '100%',
-                height: 88,
-                marginTop: 12,
-                borderRadius: 12,
-                background: 'linear-gradient(90deg, #eceff1 25%, #f6f8f9 40%, #eceff1 55%)',
-                backgroundSize: '200% 100%',
-                animation: 'mobileVs4SkeletonShimmer 1.2s linear infinite'
-              }}
-            />
-          </div>
-        </section>
-      ) : (
-        <Benefits landingData={landingData} onOpenModal={onOpenModal} />
-      )}
+      <Benefits landingData={landingData} onOpenModal={onOpenModal} />
       <Testimonials onOpenModal={onOpenModal} />
       <Footer />
-
-      <style>{`
-        @keyframes mobileVs4SkeletonShimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-      `}</style>
     </main>
   )
 }
