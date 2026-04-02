@@ -14,7 +14,7 @@ export function Hero({ landingData, onOpenModal }: PropsComponentsType) {
       const cents = valor.split(',')?.[1];
       const real = valor.split(',')?.[0];
       return <span>R$ <strong>{real}</strong>,{cents ? cents : '00'}</span>
-    } else  return <span>R$ <strong>500</strong>,00</span>
+    } else  return ''
   };
 
   const handleCtaClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -34,7 +34,7 @@ export function Hero({ landingData, onOpenModal }: PropsComponentsType) {
           </h2>
 
           <p className="regular p2">
-            <strong>{landingData ? landingData.user_name : 'Leandro'}, </strong>
+            <strong>{landingData?.user_name ? landingData.user_name + ',' : ''} </strong>
             essa é a etapa em que mais surgem
             problemas na venda,
             <strong> mesmo quando tudo parece certo.</strong>

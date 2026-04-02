@@ -815,6 +815,7 @@
 
       .header-container {
         border-radius: 16px 16px 0 0;
+        height: auto;
 
         &::after {
           border-radius: 16px 16px 0 0;
@@ -827,7 +828,7 @@
 
         .subtitle {
           font-size: 18px;
-          line-height: 16px;
+          line-height: 20px;
           width: 80%;
         }
       }

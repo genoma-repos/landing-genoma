@@ -6,13 +6,13 @@ import type { PropsComponentsType } from './MobileVs4'
 const costItems = [
   {
     title: 'Emissão das certidões',
-    value: 'R$ 700,00',
+    value: '',
     description: 'Pagamentos destinados aos órgãos emissores (cartórios e serviços oficiais)',
     icon: fileIcon,
   },
   {
     title: 'Acompanhamento especializado',
-    value: 'R$ 300,00',
+    value: '',
     description: 'Gestão completa da etapa, validação de documentos e tratativa de exigências',
     icon: usersGroupIcon,
   },
@@ -37,7 +37,7 @@ export function Benefits({ landingData, onOpenModal }: PropsComponentsType) {
         <span className="benefits__cents">,{cents ? cents : '00'}</span></>
     } else return <>
       <span className="benefits__currency">R$</span>
-      <strong>1.000</strong>
+      <strong>500</strong>
       <span className="benefits__asterisk">*</span>
       <span className="benefits__cents">,00</span>
     </>
@@ -80,22 +80,24 @@ export function Benefits({ landingData, onOpenModal }: PropsComponentsType) {
             <p className="benefits__details-title">Como esse valor é composto:</p>
 
             <div className="benefits__cost-list">
-              {costItems.map((item) => (
-                <article className="benefits__cost-item" key={item.title}>
-                  <div className={`benefits__cost-icon`}>
-                    <img src={item.icon} />
-                  </div>
-
-                  <div className="benefits__cost-copy">
-                    <div className="benefits__cost-header">
-                      <strong>{item.title}</strong>
-                      <span>{item.value}</span>
+              {(landingData?.servicos?.[0]
+                ? landingData.servicos : costItems).map((item) => (
+                  <article className="benefits__cost-item" key={item.title}>
+                    <div className={`benefits__cost-icon`}>
+                      <img src={item.icon} />
                     </div>
 
-                    <p>{item.description}</p>
-                  </div>
-                </article>
-              ))}
+                    <div className="benefits__cost-copy">
+                      <div className="benefits__cost-header">
+                        <strong>{item.title}</strong>
+                        <span>{item.value}</span>
+                      </div>
+
+                      <p>{item.description}</p>
+                    </div>
+                  </article>
+                ))
+              }
             </div>
 
             <span className="benefits__divider" />
