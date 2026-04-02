@@ -50,13 +50,15 @@ export const formattedNumber = (value: string) => {
     return parseFloat(numericValue);
 };
 
+const FATOR_DESCONTO = 1.25;
+
 function returnServicos(landingData: ResponseType | null): ServicoType[] {
     const servicoes: ServicoType[] = [];
     if (landingData?.servicos?.[0]) {
         const jogos = landingData.servicos.filter(e => e.nome_servico.toLowerCase().includes('jogo'));
         if (jogos) servicoes.push({
             title: 'Emissão das certidões',
-            value: jogos.reduce((acc, item) => acc + (formattedNumber(item.custas) * 0.2 + formattedNumber(item.custas)), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+            value: jogos.reduce((acc, item) => acc + (formattedNumber(item.custas) * FATOR_DESCONTO), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
             description: JOGO_CERTIDOES.join(', '),
             icon: fileIcon,
         })
@@ -64,7 +66,7 @@ function returnServicos(landingData: ResponseType | null): ServicoType[] {
         const averbacoes = landingData.servicos.filter(e => e.nome_servico.toLowerCase().includes('averbação'));
         if (averbacoes) servicoes.push({
             title: 'Averbação de documentos',
-            value: averbacoes.reduce((acc, item) => acc + (formattedNumber(item.custas) * 0.2 + formattedNumber(item.custas)), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+            value: averbacoes.reduce((acc, item) => acc + (formattedNumber(item.custas) * FATOR_DESCONTO), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
             description: 'Serviço de averbação da venda no registro do imóvel',
             icon: fileIcon,
         })
@@ -73,7 +75,7 @@ function returnServicos(landingData: ResponseType | null): ServicoType[] {
         if (outrosServicos) outrosServicos.forEach((servico) => {
             servicoes.push({
                 title: servico.nome_servico,
-                value: (formattedNumber(servico.custas) * 0.2 + formattedNumber(servico.custas)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+                value: (formattedNumber(servico.custas) * FATOR_DESCONTO).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
                 description: servico.servicos,
                 icon: servico.nome_servico.includes('certidões') ? fileIcon : usersGroupIcon,
             })
@@ -81,7 +83,7 @@ function returnServicos(landingData: ResponseType | null): ServicoType[] {
 
         const acompanhamentosDNA = {
             title: 'Acompanhamento especializado',
-            value: landingData.servicos.reduce((acc, item) => acc + (formattedNumber(item.servicos) * 0.2 + formattedNumber(item.servicos)), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+            value: landingData.servicos.reduce((acc, item) => acc + (formattedNumber(item.servicos) * FATOR_DESCONTO), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
             description: 'Gestão completa da etapa, validação de documentos e tratativa de exigências',
             icon: usersGroupIcon,
         }
@@ -119,7 +121,7 @@ const getUserData = async (): Promise<LandingPageCustomDataType | null> => {
         console.log('Status HTTP:', response.status);
         console.log('Resposta:', data);
 
-        const total_sem_desconto = data.servicos?.reduce((acc: number, item: { total: string }) => acc + (formattedNumber(item.total) * 0.2 + formattedNumber(item.total)), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) || 'R$ 500,00';
+        const total_sem_desconto = data.servicos?.reduce((acc: number, item: { total: string }) => acc + (formattedNumber(item.total) * FATOR_DESCONTO), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) || 'R$ 500,00';
         const desconto = (formattedNumber(total_sem_desconto) * 0.2).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         const total = (formattedNumber(total_sem_desconto) - formattedNumber(desconto)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
