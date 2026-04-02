@@ -56,7 +56,7 @@ function returnServicos(landingData: ResponseType | null): ServicoType[] {
     const servicoes: ServicoType[] = [];
     if (landingData?.servicos?.[0]) {
         const jogos = landingData.servicos.filter(e => e.nome_servico.toLowerCase().includes('jogo'));
-        if (jogos) servicoes.push({
+        if (jogos[0]) servicoes.push({
             title: 'Emissão das certidões',
             value: jogos.reduce((acc, item) => acc + (formattedNumber(item.custas) * FATOR_DESCONTO), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
             description: JOGO_CERTIDOES.join(', '),
@@ -64,7 +64,7 @@ function returnServicos(landingData: ResponseType | null): ServicoType[] {
         })
 
         const averbacoes = landingData.servicos.filter(e => e.nome_servico.toLowerCase().includes('averbação'));
-        if (averbacoes) servicoes.push({
+        if (averbacoes[0]) servicoes.push({
             title: 'Averbação de documentos',
             value: averbacoes.reduce((acc, item) => acc + (formattedNumber(item.custas) * FATOR_DESCONTO), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
             description: 'Serviço de averbação da venda no registro do imóvel',
@@ -72,7 +72,7 @@ function returnServicos(landingData: ResponseType | null): ServicoType[] {
         })
 
         const outrosServicos = landingData.servicos.filter(e => !e.nome_servico.toLowerCase().includes('jogo') && !e.nome_servico.toLowerCase().includes('averbação'));
-        if (outrosServicos) outrosServicos.forEach((servico) => {
+        if (outrosServicos[0]) outrosServicos.forEach((servico) => {
             servicoes.push({
                 title: servico.nome_servico,
                 value: (formattedNumber(servico.custas) * FATOR_DESCONTO).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
