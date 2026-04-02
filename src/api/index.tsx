@@ -53,27 +53,27 @@ export const formattedNumber = (value: string) => {
 function returnServicos(landingData: ResponseType | null): ServicoType[] {
     const servicoes: ServicoType[] = [];
     if (landingData?.servicos?.[0]) {
-        const jogos = landingData.servicos.filter(e => e.nome_servico.includes('jogo'));
+        const jogos = landingData.servicos.filter(e => e.nome_servico.toLowerCase().includes('jogo'));
         if (jogos) servicoes.push({
             title: 'Emissão das certidões',
-            value: jogos.reduce((acc, item) => acc + (formattedNumber(item.total) * 0.2 + formattedNumber(item.total)), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+            value: jogos.reduce((acc, item) => acc + (formattedNumber(item.custas) * 0.2 + formattedNumber(item.custas)), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
             description: JOGO_CERTIDOES.join(', '),
             icon: fileIcon,
         })
 
-        const averbacoes = landingData.servicos.filter(e => e.nome_servico.includes('averbação'));
+        const averbacoes = landingData.servicos.filter(e => e.nome_servico.toLowerCase().includes('averbação'));
         if (averbacoes) servicoes.push({
             title: 'Averbação de documentos',
-            value: averbacoes.reduce((acc, item) => acc + (formattedNumber(item.total) * 0.2 + formattedNumber(item.total)), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+            value: averbacoes.reduce((acc, item) => acc + (formattedNumber(item.custas) * 0.2 + formattedNumber(item.custas)), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
             description: 'Serviço de averbação da venda no registro do imóvel',
             icon: fileIcon,
         })
 
-        const outrosServicos = landingData.servicos.filter(e => !e.nome_servico.includes('jogo') && !e.nome_servico.includes('averbação'));
+        const outrosServicos = landingData.servicos.filter(e => !e.nome_servico.toLowerCase().includes('jogo') && !e.nome_servico.toLowerCase().includes('averbação'));
         if (outrosServicos) outrosServicos.forEach((servico) => {
             servicoes.push({
                 title: servico.nome_servico,
-                value: (formattedNumber(servico.total) * 0.2 + formattedNumber(servico.total)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+                value: (formattedNumber(servico.custas) * 0.2 + formattedNumber(servico.custas)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
                 description: servico.servicos,
                 icon: servico.nome_servico.includes('certidões') ? fileIcon : usersGroupIcon,
             })
