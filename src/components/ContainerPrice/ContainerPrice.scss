@@ -606,46 +606,45 @@
             text-align: left;
           }
         }
+      }
+    }
 
-        .discount-box {
-          background: #eef7e3;
-          display: flex;
-          height: 43px;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 17px;
-          position: relative;
-          border-radius: 8px;
-          width: 100%;
+    .discount-box {
+      background: #eef7e3;
+      display: flex;
+      height: 43px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 17px;
+      position: relative;
+      border-radius: 8px;
+      width: 100%;
 
-          .discount-label {
-            display: flex;
-            align-items: center;
-            gap: 7.998px;
+      .discount-label {
+        display: flex;
+        align-items: center;
+        gap: 7.998px;
 
-            svg {
-              width: 16px;
-              height: 16px;
-            }
-
-            p {
-              font-family: 'Roboto', sans-serif;
-              font-weight: 400;
-              line-height: 20px;
-              color: #6b9539;
-              font-size: 14px;
-            }
-          }
-
-          .discount-value {
-            font-family: 'Roboto', sans-serif;
-            font-weight: 400;
-            line-height: 20px;
-            color: #6b9539;
-            font-size: 14px;
-          }
+        svg {
+          width: 16px;
+          height: 16px;
         }
 
+        p {
+          font-family: 'Roboto', sans-serif;
+          font-weight: 400;
+          line-height: 20px;
+          color: #6b9539;
+          font-size: 14px;
+        }
+      }
+
+      .discount-value {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        line-height: 20px;
+        color: #6b9539;
+        font-size: 14px;
       }
     }
 
@@ -675,18 +674,37 @@
       }
     }
 
+    .container-prices {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      padding: 13px 8px;
+    }
+
     .price-total {
       display: flex;
       justify-content: space-between;
       width: 100%;
       align-items: center;
-      padding: 13px 8px;
 
       .total-label {
         font-size: 16px;
       }
 
       .total-value {
+        color:#6B9539;        
+        font-family: Roboto;
+        font-size: 20px;
+        font-weight: 700;
+      }      
+
+      .riscado {
+        color: #5D696F;
+        font-weight: 400;
+        text-decoration: line-through;
         font-size: 16px;
       }
     }

@@ -3,6 +3,7 @@ import usersGroupIcon from '../assets/icons/UsersGroupIcon.svg'
 export interface LandingPageCustomDataType {
     servicos: ServicoType[]
     user_name: string
+    valor_sem_desconto: string
     valor_desconto: string
     valor_total: string
     quant_vendedores?: number
@@ -128,6 +129,7 @@ const getUserData = async (): Promise<LandingPageCustomDataType | null> => {
         const formattedData: LandingPageCustomDataType = {
             user_name: data.user_name,
             valor_total: total,
+            valor_sem_desconto: total_sem_desconto,
             valor_desconto: desconto,
             servicos: returnServicos(data) || [],
             quant_vendedores: data.quant_vendedores || 1,

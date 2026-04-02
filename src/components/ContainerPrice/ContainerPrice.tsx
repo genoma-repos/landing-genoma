@@ -118,15 +118,6 @@ export default function ContainerPrice({ isOpen, onClose, landingData }: Contain
         </div>
         <p className="item-description">Gestão completa das certidões até a escritura</p>
       </div>
-
-      <div className="discount-box">
-        <div className="discount-label">
-          <DiscountIcon />
-          <p>Desconto exclusivo</p>
-        </div>
-        <div className="discount-value">- {landingData?.valor_desconto}</div>
-      </div>
-
     </div>
   };
 
@@ -237,9 +228,24 @@ export default function ContainerPrice({ isOpen, onClose, landingData }: Contain
 
             <div className="divider-line" />
 
-            <div className="price-total">
-              <p className="total-label">Total</p>
-              <p className="total-value">{landingData?.valor_total}</p>
+            <div className='container-prices'>
+              <div className="price-total sem-desconto">
+                <p className="total-label"></p>
+                <p className="total-value riscado">{landingData?.valor_sem_desconto}</p>
+              </div>
+
+              <div className="price-total com-desconto">
+                <p className="total-label">Total</p>
+                <p className="total-value">{landingData?.valor_total}</p>
+              </div>
+            </div>
+
+            <div className="discount-box">
+              <div className="discount-label">
+                <DiscountIcon />
+                <p>Condição especial</p>
+              </div>
+              <div className="discount-value">- {landingData?.valor_desconto}</div>
             </div>
 
             <div className="discount-warning">
@@ -248,8 +254,6 @@ export default function ContainerPrice({ isOpen, onClose, landingData }: Contain
                 O desconto é exclusivo para este momento da venda. Após essa etapa, o serviço pode ser contratado pelo valor integral.
               </p>
             </div>
-
-            <div className="divider-line" />
           </div>
 
           <div className="cta-section">

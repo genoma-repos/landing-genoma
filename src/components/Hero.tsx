@@ -13,7 +13,11 @@ export function Hero({ landingData, onOpenModal }: PropsComponentsType) {
       const valor = landingData?.valor_total.replace('R$', '').replace(' ', '');
       const cents = valor.split(',')?.[1];
       const real = valor.split(',')?.[0];
-      return <span>R$ <strong>{real}</strong>,{cents ? cents : '00'}</span>
+      return <div>
+        <span>de <span className='valor-riscado'>{landingData?.valor_sem_desconto}</span></span><br />
+        <span>por R$ <strong>{real}</strong>,{cents ? cents : '00'} </span>
+        <span className="label">/ serviço completo</span>
+      </div>
     } else  return ''
   };
 
@@ -88,8 +92,7 @@ export function Hero({ landingData, onOpenModal }: PropsComponentsType) {
             </div>
 
             <div className="valor-container">
-              {returnValor()}
-              <span className="label">/serviço completo</span>
+              {returnValor()}              
             </div>
             <span className="regular s1">90% dos proprietários escolhem esse acompanhamento.</span>
             <div className="actions">

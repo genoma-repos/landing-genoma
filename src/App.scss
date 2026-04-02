@@ -48,7 +48,7 @@ h3 {
 }
 
 .app-shell {
-    margin: 0 auto;    
+    margin: 0 auto;
     display: grid;
     gap: var(--space-xxl);
 }
@@ -247,6 +247,16 @@ span.regular.s1 {
                 display: flex;
                 gap: 8px;
                 align-items: flex-end;
+
+                .valor-riscado {
+                    color: #74848B;
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 24px;
+                    text-decoration: line-through;
+                }
 
                 span {
                     color: #74848B;
@@ -1119,11 +1129,21 @@ span.regular.s1 {
 
     .benefits__price {
         display: flex;
-        align-items: flex-end;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         margin-top: 20px;
         color: #74848b;
         font-family: 'Roboto', sans-serif;
+
+        .valor-riscado {
+            color: #74848B;
+            font-family: Lato;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            text-decoration: line-through;
+        }
 
         strong {
             color: #01988c;
@@ -1678,7 +1698,7 @@ span.regular.s1 {
 @media (min-width: 1024px) {
 
     .app-shell {
-        margin: 0;    
+        margin: 0;
         display: grid;
         gap: var(--space-xxl);
     }
@@ -1764,7 +1784,7 @@ span.regular.s1 {
         }
     }
 
-    .common-issues {        
+    .common-issues {
         padding: 69px;
 
         .common-issues__content {

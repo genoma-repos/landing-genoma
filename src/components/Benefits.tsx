@@ -31,10 +31,14 @@ export function Benefits({ landingData, onOpenModal }: PropsComponentsType) {
       const cents = valor.split(',')?.[1];
       const real = valor.split(',')?.[0];
       return <>
-        <span className="benefits__currency">R$</span>
-        <strong>{real}</strong>
-        <span className="benefits__asterisk">*</span>
-        <span className="benefits__cents">,{cents ? cents : '00'}</span></>
+        <p className='valor-riscado'>{landingData?.valor_sem_desconto}</p>
+        <div>
+          <span className="benefits__currency">R$</span>
+          <strong>{real}</strong>
+          <span className="benefits__asterisk">*</span>
+          <span className="benefits__cents">,{cents ? cents : '00'}</span>
+        </div>
+      </>
     } else return <>
       <span className="benefits__currency">R$</span>
       <strong>500</strong>
