@@ -32,6 +32,8 @@ export function MobileVs4() {
     try {
       const res = await getUserData();
       setLandingData(res);
+      const urlParams = new URLSearchParams(window.location.search);
+      if(urlParams.get('chk') === 'true') onOpenModal();
     } finally {
       setIsLoading(false);
     }
