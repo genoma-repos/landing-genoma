@@ -1,6 +1,7 @@
 import fileIcon from '../assets/icons/FileIcon.svg'
 import usersGroupIcon from '../assets/icons/UsersGroupIcon.svg'
 import seloDna from '../assets/selo_dna.png'
+import Star from '../assets/icons/Star.svg'
 import type { PropsComponentsType } from './MobileVs4'
 
 const costItems = [
@@ -31,19 +32,30 @@ export function Benefits({ landingData, onOpenModal }: PropsComponentsType) {
       const cents = valor.split(',')?.[1];
       const real = valor.split(',')?.[0];
       return <>
-        <p className='valor-riscado'>{landingData?.valor_sem_desconto}</p>
+        <div className='row'>
+          <p className='valor-riscado'>{landingData?.valor_sem_desconto}</p>
+          <div className='percent-discount'>-20% OFF</div>
+        </div>
         <div>
           <span className="benefits__currency">R$</span>
           <strong>{real}</strong>
           <span className="benefits__asterisk">*</span>
           <span className="benefits__cents">,{cents ? cents : '00'}</span>
         </div>
+        <span className="benefits__price-note">*Valor estimado</span>
+        <div className='especial-condition'>
+          <img src={Star} alt='Ícone de estrela' />
+          <p className='p2'>Condição especial</p>
+        </div>
       </>
     } else return <>
-      <span className="benefits__currency">R$</span>
-      <strong>500</strong>
-      <span className="benefits__asterisk">*</span>
-      <span className="benefits__cents">,00</span>
+      <div>
+        <span className="benefits__currency">R$</span>
+        <strong>500</strong>
+        <span className="benefits__asterisk">*</span>
+        <span className="benefits__cents">,00</span>
+      </div>
+      <span className="benefits__price-note">*Valor estimado</span>
     </>
   };
 
@@ -74,8 +86,6 @@ export function Benefits({ landingData, onOpenModal }: PropsComponentsType) {
             <div className="benefits__price">
               {returnValor()}
             </div>
-
-            <span className="benefits__price-note">*Valor estimado</span>
 
             <img className="benefits__seal" src={seloDna} />
           </div>

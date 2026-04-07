@@ -1,7 +1,8 @@
-import { useRef, useState, type TouchEvent } from 'react'
-
-import quotesIcon from '../assets/icons/QuotesIcon.svg'
-import { figmaImages } from '../constants/figmaAssets'
+import { useRef, useState, type TouchEvent } from 'react';
+import quotesIcon from '../assets/icons/QuotesIcon.svg';
+import Sebastian from '../assets/avatars/Sebastian.jpg';
+import Miguel from '../assets/avatars/Miguel.jpg';
+import ElisaRaquel from '../assets/avatars/ElisaRaquel.jpg';
 
 const testimonials = [
   {
@@ -9,21 +10,21 @@ const testimonials = [
     location: 'Ipanema, RJ',
     text:
       '"Morava no exterior enquanto a venda acontecia. A equipe da DNA gerenciou tudo remotamente sem precisar da minha presença física. Incrível a dedicação e transparência."',
-    avatar: figmaImages.sebastian,
+    avatar: Sebastian,
   },
   {
     name: 'Miguel',
     location: 'Copacabana, RJ',
     text:
       '"Processo rápido e claro. Em poucos dias tudo resolvido. A equipe cuidou de cada detalhe e eu fui informado em cada etapa. Não precisei me preocupar com nada."',
-    avatar: figmaImages.miguel,
+    avatar: Miguel,
   },
   {
     name: 'Elisa & Raquel',
     location: 'Copacabana, RJ',
     text:
       '"Suporte completo do início ao fim. Tínhamos muito medo da burocracia, mas a DNA simplificou tudo. Escritura assinada em tempo recorde, sem nenhuma surpresa."',
-    avatar: figmaImages.elisaRaquel,
+    avatar: ElisaRaquel,
   },
 ] as const
 
