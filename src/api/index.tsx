@@ -11,6 +11,8 @@ export interface LandingPageCustomDataType {
 }
 
 type ResponseType = {
+    id: 6188
+    processo_id: 706
     servicos: ServicoResponseType[]
     user_name: string
     valor_total: string
@@ -51,7 +53,10 @@ export const formattedNumber = (value: string) => {
     return parseFloat(numericValue);
 };
 
+const URL = import.meta.env.VITE_SERVER_URL;
+const URL_PARAMS = new URLSearchParams(window.location.search);
 const FATOR_DESCONTO = 1.25;
+const URL_ZAP = 'https://wa.me/5521992780407';
 
 function returnServicos(landingData: ResponseType | null): ServicoType[] {
     const servicoes: ServicoType[] = [];
@@ -93,34 +98,29 @@ function returnServicos(landingData: ResponseType | null): ServicoType[] {
     return servicoes;
 };
 
-const getUserData = async (): Promise<LandingPageCustomDataType | null> => {
-
-    const url = import.meta.env.VITE_SERVER_URL;
-    const urlParams = new URLSearchParams(window.location.search);
-    console.log("Params: ", {
-        id: urlParams.get('id'),
-        cod: urlParams.get('cod')
-    });
-
-    const payload = {
-        user_id: urlParams.get('id'),
-        codigo: urlParams.get('cod'),
+export const getUserData = async (): Promise<LandingPageCustomDataType | null> => {
+    localStorage.removeItem('id_process');
+    
+    const PAYLOAD = {
+        user_id: URL_PARAMS.get('id'),
+        codigo: URL_PARAMS.get('cod'),
     };
 
     try {
-        const response = await fetch(url + '/api/dados_landing_page', {
+        const response = await fetch(URL + '/api/dados_landing_page', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 // 'Authorization': `Bearer ${ token }`
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(PAYLOAD)
         });
 
         const data = await response.json() as ResponseType;
 
         console.log('Status HTTP:', response.status);
         console.log('Resposta:', data);
+        localStorage.setItem('id_process', data.processo_id.toString())
 
         const total_sem_desconto = data.servicos?.reduce((acc: number, item: { total: string }) => acc + (formattedNumber(item.total) * FATOR_DESCONTO), 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) || 'R$ 500,00';
         const desconto = (formattedNumber(total_sem_desconto) * 0.2).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -138,9 +138,35 @@ const getUserData = async (): Promise<LandingPageCustomDataType | null> => {
         return formattedData;
 
     } catch (error) {
-        console.error('Erro na requisição:', error);
+        console.error('Erro na requisição "dados_landing_page" :', error);
         return null
     }
 }
 
-export { getUserData }
+export const onConfirm = async () => {
+    const processo_id = localStorage.getItem('id_process');
+    console.log("ID: ", processo_id);
+    
+    if(!processo_id) return window.location.href = URL_ZAP;
+
+    try {
+        const response = await fetch(URL + '/api/salvar_aceite_servico', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${ token }`
+            },
+            body: JSON.stringify({processo_id})
+        });
+
+        const data = await response.json();
+        console.log('Status HTTP:', response.status);
+        console.log('Resposta:', data);
+        return window.location.href = URL_ZAP;
+        
+    } catch (error) {
+        console.error('Erro na requisição "salvar_aceite_servico" :', error);
+        return null
+    }
+
+}

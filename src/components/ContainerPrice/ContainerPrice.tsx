@@ -13,7 +13,7 @@ import {
   WarningIcon
 } from './components/Icons';
 import './ContainerPrice.scss';
-import { type LandingPageCustomDataType } from '../../api';
+import { onConfirm, type LandingPageCustomDataType } from '../../api';
 
 type ContainerPriceProps = {
   isOpen: boolean
@@ -264,7 +264,7 @@ export default function ContainerPrice({ isOpen, onClose, landingData }: Contain
               </p>
             </div>
             <div className="cta-buttons">
-              <button className="cta-button" data-name="primary/large">
+              <button className="cta-button" data-name="primary/large" onClick={onConfirm}>
                 <div className="cta-button-text">
                   <p>Confirmar acompanhamento</p>
                 </div>
